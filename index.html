@@ -102,7 +102,6 @@
     }
     </script>
     
-    <!-- 👇 تنسيقات اللافتة الزرقاء 👇 -->
     <style>
       #my-blue-overlay {
         position: fixed; inset: 0; background: #0f172a; z-index: 2147483647;
@@ -138,7 +137,6 @@
     
     <div id="app"></div>
     
-    <!-- 👇 لافتة البحث والكود 👇 -->
     <div id="my-blue-overlay">
         <h2>جاري البحث عن خصم<br><span style="font-size: 20px;">(Searching for opponent...)</span></h2>
         <div class="spinner"></div>
@@ -147,8 +145,8 @@
         <button onclick="document.getElementById('my-blue-overlay').style.display='none'">إلغاء (Cancel)</button>
     </div>
 
-    <!-- 👇 سكربت إظهار اللافتة واستقبال الكود 👇 -->
     <script>
+      // إظهار اللافتة الزرقاء
       window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('autostart')) {
@@ -158,13 +156,14 @@
         }
       });
 
-      // استقبال الكود الحروفي من اللعبة
-      window.addEventListener('message', (event) => {
-        if (event.data && event.data.type === 'ROOM_CODE_GENERATED') {
-          const codeBox = document.getElementById('my-room-code');
-          if (codeBox) codeBox.innerText = event.data.code;
+      // قراءة الكود من الذاكرة وتحديث اللافتة
+      setInterval(() => {
+        const code = localStorage.getItem('turfwar_room_code');
+        const codeBox = document.getElementById('my-room-code');
+        if (code && codeBox && code !== '----') {
+          codeBox.innerText = code;
         }
-      });
+      }, 500);
     </script>
     
   </body>
