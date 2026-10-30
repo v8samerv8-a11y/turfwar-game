@@ -147,7 +147,7 @@
         <button onclick="document.getElementById('my-blue-overlay').style.display='none'">إلغاء (Cancel)</button>
     </div>
 
-    <!-- 👇 سكربت إظهار اللافتة وقراءة الكود من الذاكرة 👇 -->
+    <!-- 👇 سكربت إظهار اللافتة واستقبال الكود 👇 -->
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -158,14 +158,13 @@
         }
       });
 
-      // قراءة الكود المحفوظ وعرضه في اللافتة
-      setInterval(() => {
-        const code = localStorage.getItem('turfwar_room_code');
-        const codeBox = document.getElementById('my-room-code');
-        if (code && codeBox && code !== '----') {
-          codeBox.innerText = code;
+      // استقبال الكود الحروفي من اللعبة
+      window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'ROOM_CODE_GENERATED') {
+          const codeBox = document.getElementById('my-room-code');
+          if (codeBox) codeBox.innerText = event.data.code;
         }
-      }, 500);
+      });
     </script>
     
   </body>
