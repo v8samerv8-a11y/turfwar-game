@@ -146,17 +146,22 @@
     </div>
 
     <script>
-      // إظهار اللافتة الزرقاء
+      // إظهار اللافتة الزرقاء وقراءة الكود من الرابط فوراً
       window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
+        
         if (urlParams.has('autostart')) {
-          setTimeout(() => {
-            document.getElementById('my-blue-overlay').style.display = 'flex';
-          }, 500); 
+          document.getElementById('my-blue-overlay').style.display = 'flex';
+          
+          // قراءة الكود من الرابط (الذي يرسله الموقع المالي)
+          const roomCodeFromUrl = urlParams.get('room');
+          if (roomCodeFromUrl && roomCodeFromUrl.length === 4) {
+              document.getElementById('my-room-code').innerText = roomCodeFromUrl;
+          }
         }
       });
 
-      // قراءة الكود من الذاكرة وتحديث اللافتة
+      // تحديث مستمر في حال تغير الكود من داخل اللعبة (احتياطي)
       setInterval(() => {
         const code = localStorage.getItem('turfwar_room_code');
         const codeBox = document.getElementById('my-room-code');
