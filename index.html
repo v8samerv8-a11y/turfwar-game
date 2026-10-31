@@ -39,9 +39,9 @@
     <meta name="twitter:image" content="https://turfwar.ianhsiao.me/og/og-zh-TW.jpg" />
     <meta name="twitter:image:alt" content="角頭械鬥 Turf War: Taipei：台北西門町電影街的第一人稱槍戰畫面" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/turfwar-game/fonts/oswald.woff2?v=9dde37975475" />
-    <link rel="modulepreload" crossorigin href="/turfwar-game/assets/main-k0p3JJCI.js" />
+    <link rel="modulepreload" crossorigin href="/turfwar-game/assets/main-BdTZF0fB.js" />
     <link rel="modulepreload" crossorigin href="/turfwar-game/assets/three-BWX72URo.js" />
-    <link rel="modulepreload" crossorigin href="/turfwar-game/assets/index-DQ-E3Wj8.js" />
+    <link rel="modulepreload" crossorigin href="/turfwar-game/assets/index-Ch095awV.js" />
     <link rel="modulepreload" crossorigin href="/turfwar-game/assets/KTX2Loader-CKczftUG.js" />
     <link rel="preload" as="fetch" crossorigin fetchpriority="low" href="/turfwar-game/assets/weapons.glb?v=dee57a875512" />
     <link rel="preload" as="fetch" crossorigin fetchpriority="low" href="/turfwar-game/assets/props.glb?v=6712b3b764a3" />
@@ -101,30 +101,7 @@
       ]
     }
     </script>
-    
-    <!-- 👇 تنسيقات اللافتة الزرقاء 👇 -->
-    <style>
-      #my-blue-overlay {
-        position: fixed; inset: 0; background: #0f172a; z-index: 2147483647;
-        display: none; flex-direction: column; align-items: center; justify-content: center;
-        color: #fff; font-family: sans-serif; text-align: center; padding: 20px;
-      }
-      #my-blue-overlay h2 { color: #14b8a6; font-size: 28px; margin-bottom: 20px; }
-      #my-blue-overlay .spinner {
-        width: 60px; height: 60px; border: 6px solid rgba(20,184,166,0.3); border-top-color: #14b8a6;
-        border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 40px;
-      }
-      @keyframes spin { to { transform: rotate(360deg); } }
-      #my-blue-overlay button {
-        padding: 15px 60px; background: #ef4444; border: none; border-radius: 10px;
-        font-size: 20px; cursor: pointer; color: #fff; font-weight: bold;
-      }
-      .code-box-display {
-        background: #0f172a; border: 1px solid #14b8a6; border-radius: 10px;
-        padding: 15px 40px; font-size: 36px; letter-spacing: 6px; color: #fff; margin-bottom: 10px;
-      }
-    </style>
-    <script type="module" crossorigin src="/turfwar-game/assets/main-mpdMNCsC.js"></script>
+    <script type="module" crossorigin src="/turfwar-game/assets/main-D42QpJaZ.js"></script>
     <link rel="modulepreload" crossorigin href="/turfwar-game/assets/modulepreload-polyfill-B5Qt9EMX.js">
   </head>
   <body>
@@ -137,35 +114,6 @@
     </noscript>
     
     <div id="app"></div>
-    
-    <!-- 👇 لافتة البحث والكود 👇 -->
-    <div id="my-blue-overlay">
-        <h2>جاري البحث عن خصم<br><span style="font-size: 20px;">(Searching for opponent...)</span></h2>
-        <div class="spinner"></div>
-        <div class="code-box-display" id="my-room-code">----</div>
-        <div style="color:#94a3b8;font-size:14px;margin-bottom:20px;">كود الغرفة</div>
-        <button onclick="document.getElementById('my-blue-overlay').style.display='none'">إلغاء (Cancel)</button>
-    </div>
-
-    <!-- 👇 سكربت إظهار اللافتة واستقبال الكود 👇 -->
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('autostart')) {
-          setTimeout(() => {
-            document.getElementById('my-blue-overlay').style.display = 'flex';
-          }, 500); 
-        }
-      });
-
-      // استقبال الكود الحروفي من اللعبة
-      window.addEventListener('message', (event) => {
-        if (event.data && event.data.type === 'ROOM_CODE_GENERATED') {
-          const codeBox = document.getElementById('my-room-code');
-          if (codeBox) codeBox.innerText = event.data.code;
-        }
-      });
-    </script>
     
   </body>
 </html>
